@@ -5,13 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OnceYouBuyYouStartCryingTelephone {
-    public static final int TWO_G = 2;
-    public static final int THREE_G = 3;
-    public static final int FOUR_G = 4;
+
     private Map<String, String> names = new HashMap<String, String>();
 
-    private Map<String, Integer> types = new HashMap<String, Integer>();
+    //private Map<String, Integer> types = new HashMap<String, Integer>();
     private Map<String, Date> cd = new HashMap<String, Date>();
+
+    private Map<ConnectionType, PhoneConnection> connectionForATypeMap
+            = new HashMap<ConnectionType, PhoneConnection>();
+
+    public OnceYouBuyYouStartCryingTelephone(){
+        initialize();
+    }
+
+    protected void initialize() {
+        connectionForATypeMap.put(ConnectionType.TWO_G,
+                new TwoGConnection());
+        connectionForATypeMap.put(ConnectionType.THREE_G,
+                new ThreeGConnection());
+    }
 
     /**
      This method activates a connection for a customer and stores different
@@ -27,54 +39,55 @@ public class OnceYouBuyYouStartCryingTelephone {
      Is there any legal consumer forum issue?
      For 4G- we don't have 4th generation spectrum. we will provide 3G
      with a wrapper of 4G
-     * @param a
-     * @param s
-     * @param b
-     * @param c
+     * @param firstName
+     * @param prefix
+     * @param middleName
+     * @param lastName
      * @param z
      * @param gen
      * @return
      **/
-    public String add(String a, String s, String b,
-                      String c, Date z, int gen) {
-        if (a == null || c == null || z == null)
+    public String addConnection(String firstName, String prefix, String middleName,
+                                String lastName, Date z, ConnectionType gen) {
+        if (firstName == null || lastName == null || z == null)
             throw new RuntimeException();
-        String r = "";
-        if (s != null) {
-            r = r + " " + s;
-            if (a != null)
-                r = r + " " + a;
-            if (b != null)
-                r = r + " " + b;
-            if (c != null)
-                r = r + c;
+        String personName = "";
+        if (prefix != null) {
+            personName = personName + " " + prefix;
+            if (firstName != null)
+                personName = personName + " " + firstName;
+            if (middleName != null)
+                personName = personName + " " + middleName;
+            if (lastName != null)
+                personName = personName + lastName;
         } else {
-            if (a != null)
-                r = r + " " + a;
-            if (b != null)
-                r = r + " " + b;
-            if (c != null)
-                r = r + c;
+            if (firstName != null)
+                personName = personName + " " + firstName;
+            if (middleName != null)
+                personName = personName + " " + middleName;
+            if (lastName != null)
+                personName = personName + lastName;
         }
-        String n = Number.next();
-        names.put(n, r);
-        cd.put(n, z);
-        if (gen == TWO_G) {
-            activate2GCon(n);
-            types.put(n, TWO_G);
-        } else if (gen == THREE_G) {
-            activate3GCon(n);
-            types.put(n, THREE_G);
-        } else if (gen == FOUR_G) {
-            activate4GCon(n);
-            types.put(n, FOUR_G);
+        String number = Number.next();
+        connectionForATypeMap.put(number, connectionType);
+        cd.put(number, z);
+        if (gen == ConnectionType.TWO_G) {
+            activate2GCon(number);
+            connectionForATypeMap.put(ConnectionType.TWO_G, );
+        } else if (gen == ConnectionType.THREE_G) {
+            activate3GCon(number);
+            types.put(number, THREE_G);
+        } else if (gen == ConnectionType.FOUR_G) {
+            activate4GCon(number);
+            types.put(number, FOUR_G);
         } else {
             throw new IllegalStateException();
         }
-        return n;
+        return number;
     }
 
     private void activate2GCon(String n) {
+
     }
     private void activate3GCon(String n) {
 
