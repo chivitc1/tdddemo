@@ -10,6 +10,9 @@ public class ServiceCatalogue {
     }
 
     public Procedure find(String id) {
-        return proc;
+        if (this.proc.getId().equals(id)) {
+            return this.proc;
+        }
+        return null;
     }
 }
