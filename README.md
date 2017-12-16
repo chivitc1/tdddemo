@@ -26,3 +26,11 @@ doing many things.
 •	 The class is violating the open-close principle. A new enhancement will touch
 almost all methods in this class.
 •	 Finally, the class doesn't have JUnits.
+
+# remove not readable name
+- rename add method
+- rename a,b,c,... to domain names
+- move too many params into PersonName object
+# remove duplicate code 
+- buildPersonName() replace multi if many String concat
+- using strategy pattern in bill()
