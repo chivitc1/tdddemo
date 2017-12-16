@@ -1,0 +1,13 @@
+./**/*.class
+build/**
+bin/**
+out/**
+./*.iml
+./*.iws
+
+.gradle/
+.idea/
+gradlew.bat
+tdddemo.iml
+tdddemo.ipr
+tdddemo.iws
