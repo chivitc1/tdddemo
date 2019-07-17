@@ -23,5 +23,10 @@ repositories {
 
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	testCompile('org.mockito:mockito-core')
+	testCompile('org.assertj:assertj-core:3.5.2')
+	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
 }
