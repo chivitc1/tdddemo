@@ -25,4 +25,19 @@ public class MultiplicationServiceImplTest {
         // Then
         assertThat(attemptResult).isTrue();
     }
+
+    @Test
+    public void checkWrongAttemptTest() {
+        // given
+        Multiplication multiplication= new Multiplication(50, 60);
+        User user = new User("chinv");
+        int resultAttempt = 50 * 60 + 1;
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, resultAttempt);
+
+        // when
+        boolean attemptResult = multiplicationService.checkAttempt(attempt);
+
+        // then
+        assertThat(attemptResult).isFalse();
+    }
 }
