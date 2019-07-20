@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+/**
+ * Contains the factors of the operation
+ */
 @Getter @ToString @EqualsAndHashCode
 @RequiredArgsConstructor
 public class Multiplication {
